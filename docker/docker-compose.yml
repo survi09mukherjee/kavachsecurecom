@@ -1,0 +1,49 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: kavach-db
+    environment:
+        POSTGRES_USER: postgres
+        POSTGRES_PASSWORD: securepassword
+        POSTGRES_DB: kavach
+    volumes:
+      - ../db-schema/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  backend-api:
+    build: 
+        context: ../backend-api
+        dockerfile: Dockerfile
+    container_name: kavach-backend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    environment:
+      - DATABASE_URL=postgres://postgres:securepassword@db:5432/kavach
+      - AI_SERVICE_URL=http://ai-security:8000
+    
+  ai-security:
+    build:
+        context: ../ai-security
+        dockerfile: Dockerfile
+    container_name: kavach-ai-security
+    ports:
+      - "8000:8000"
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:22.0.5
+    container_name: kavach-iam
+    environment:
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+    command: start-dev
+    ports:
+      - "8080:8080"
+
+volumes:
+  pgdata:
