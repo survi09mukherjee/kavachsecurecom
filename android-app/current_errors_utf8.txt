@@ -1,0 +1,86 @@
+﻿Starting a Gradle Daemon, 18 busy and 3 incompatible and 8 stopped Daemons could not be reused, use --status for details
+.\gradlew : The message received from the daemon indicates that the daemon has disappeared.
+At line:1 char:1
++ .\gradlew compileDebugKotlin > current_errors.txt 2>&1 ; Get-Content  ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (The message rec...as disappeared.:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+Build request sent: Build{id=752cab83-f88e-4347-8559-515b5f1ae908, 
+currentDir=C:\Users\DELL\Desktop\kavachsecurecom\android-app}
+Attempting to read last messages from the daemon log...
+Daemon pid: 11928
+  log file: C:\Users\DELL\.gradle\daemon\9.3.1\daemon-11928.out.log
+----- Last 20 lines from daemon log file - daemon-11928.out.log -----
+2026-03-27T02:59:51.930+0530 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 30: 
+received class org.gradle.launcher.daemon.protocol.Build
+2026-03-27T02:59:51.930+0530 [DEBUG] [org.gradle.launcher.daemon.server.DefaultDaemonConnection] thread 30: Received 
+non-IO message from client: Build{id=752cab83-f88e-4347-8559-515b5f1ae908, 
+currentDir=C:\Users\DELL\Desktop\kavachsecurecom\android-app}
+2026-03-27T02:59:51.931+0530 [INFO] [org.gradle.launcher.daemon.server.DefaultIncomingConnectionHandler] Received 
+command: Build{id=752cab83-f88e-4347-8559-515b5f1ae908, currentDir=C:\Users\DELL\Desktop\kavachsecurecom\android-app}.
+2026-03-27T02:59:51.931+0530 [DEBUG] [org.gradle.launcher.daemon.server.DefaultIncomingConnectionHandler] Starting 
+executing command: Build{id=752cab83-f88e-4347-8559-515b5f1ae908, 
+currentDir=C:\Users\DELL\Desktop\kavachsecurecom\android-app} with connection: socket connection from /127.0.0.1:61191 
+to /127.0.0.1:61192.
+2026-03-27T02:59:51.940+0530 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] Command execution: 
+started DaemonCommandExecution[command = Build{id=752cab83-f88e-4347-8559-515b5f1ae908, 
+currentDir=C:\Users\DELL\Desktop\kavachsecurecom\android-app}, connection = DefaultDaemonConnection: socket connection 
+from /127.0.0.1:61191 to /127.0.0.1:61192] after 0.007716666666666667 minutes of idle
+2026-03-27T02:59:51.940+0530 [INFO] [org.gradle.launcher.daemon.server.DaemonRegistryUpdater] Marking the daemon as 
+busy, address: [5f2bd9a8-328b-4f4c-807f-b545d60fd38a port:61191, addresses:[localhost/127.0.0.1]]
+2026-03-27T02:59:51.941+0530 [DEBUG] [org.gradle.launcher.daemon.registry.PersistentDaemonRegistry] Marking busy by 
+address: [5f2bd9a8-328b-4f4c-807f-b545d60fd38a port:61191, addresses:[localhost/127.0.0.1]]
+2026-03-27T02:59:51.953+0530 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire exclusive 
+lock on daemon addresses registry.
+2026-03-27T02:59:51.954+0530 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired on daemon 
+addresses registry.
+2026-03-27T02:59:51.974+0530 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on daemon 
+addresses registry.
+2026-03-27T02:59:51.975+0530 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] resetting idle timer
+2026-03-27T02:59:51.975+0530 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] daemon is running. 
+Sleeping until state changes.
+2026-03-27T02:59:51.976+0530 [INFO] [org.gradle.launcher.daemon.server.exec.StartBuildOrRespondWithBusy] Daemon is 
+about to start building Build{id=752cab83-f88e-4347-8559-515b5f1ae908, 
+currentDir=C:\Users\DELL\Desktop\kavachsecurecom\android-app}. Dispatching build started information...
+2026-03-27T02:59:51.977+0530 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 32: 
+dispatching org.gradle.launcher.daemon.protocol.BuildStarted@4798afdb
+2026-03-27T02:59:51.980+0530 [DEBUG] [org.gradle.launcher.daemon.server.exec.EstablishBuildEnvironment] Configuring 
+env variables: [USERDOMAIN_ROAMINGPROFILE, ANTIGRAVITY_EDITOR_APP_ROOT, NO_PROXY, NVM_SYMLINK, PROCESSOR_LEVEL, 
+SESSIONNAME, ALLUSERSPROFILE, PROCESSOR_ARCHITECTURE, PSModulePath, VSCODE_PID, SystemDrive, =ExitCode, DIRNAME, 
+USERNAME, ProgramFiles(x86), VSCODE_NLS_CONFIG, CHROME_CRASHPAD_PIPE_NAME, FPS_BROWSER_USER_PROFILE_STRING, APP_HOME, 
+DEFAULT_JVM_OPTS, PATHEXT, DriverData, VSCODE_CRASH_REPORTER_PROCESS_TYPE, VSCODE_CODE_CACHE_PATH, ProgramData, 
+ProgramW6432, HOMEPATH, PROCESSOR_IDENTIFIER, ProgramFiles, PUBLIC, windir, ZES_ENABLE_SYSMAN, LOCALAPPDATA, 
+ChocolateyLastPathUpdate, USERDOMAIN, VSCODE_HANDLES_UNCAUGHT_ERRORS, FPS_BROWSER_APP_PROFILE_STRING, LOGONSERVER, 
+PROMPT, ANTIGRAVITY_TRAJECTORY_ID, ELECTRON_RUN_AS_NODE, OneDrive, =C:, APPDATA, 
+C:\Users\DELL\AppData\Local\Programs\Python\Python310\, JAVA_EXE, ChocolateyInstall, CommonProgramFiles, Path, 
+VSCODE_CWD, OS, COMPUTERNAME, VSCODE_ESM_ENTRYPOINT, NVM_HOME, PROCESSOR_REVISION, CommonProgramW6432, ComSpec, 
+APP_BASE_NAME, C:\Users\DELL\AppData\Local\Programs\Python\Python310\Scripts\, SystemRoot, TEMP, HOMEDRIVE, 
+USERPROFILE, TMP, CommonProgramFiles(x86), NUMBER_OF_PROCESSORS, ANTIGRAVITY_AGENT, VSCODE_IPC_HOOK]
+2026-03-27T02:59:51.992+0530 [DEBUG] [org.gradle.launcher.daemon.server.exec.LogToClient] About to start relaying all 
+logs to the client via the connection.
+2026-03-27T02:59:51.993+0530 [INFO] [org.gradle.launcher.daemon.server.exec.LogToClient] The client will now receive 
+all logging from the daemon (pid: 11928). The daemon log file: C:\Users\DELL\.gradle\daemon\9.3.1\daemon-11928.out.log
+2026-03-27T02:59:51.997+0530 [INFO] [org.gradle.launcher.daemon.server.exec.LogAndCheckHealth] Starting build in new 
+daemon [memory: 1 GiB]
+2026-03-27T02:59:52.009+0530 [DEBUG] [org.gradle.launcher.daemon.server.exec.ExecuteBuild] The daemon has started 
+executing the build.
+2026-03-27T02:59:52.010+0530 [DEBUG] [org.gradle.launcher.daemon.server.exec.ExecuteBuild] Executing build with daemon 
+context: DefaultDaemonContext[uid=6fd09a49-fa39-4c06-884c-06ee3c16583a,javaHome=C:\Users\DELL\.gradle\jdks\eclipse_adop
+tium-21-amd64-windows.2,javaVersion=21,javaVendor=Eclipse Adoptium,daemonRegistryDir=C:\Users\DELL\.gradle\daemon,pid=1
+1928,idleTimeout=10800000,priority=NORMAL,applyInstrumentationAgent=true,nativeServicesMode=ENABLED,daemonOpts=-XX:MaxM
+etaspaceSize=256m,-Xmx1024m,-Dfile.encoding=UTF-8,-Duser.country=IN,-Duser.language=en,-Duser.variant]----- End of the 
+daemon log -----
+
+JVM crash log found: file:///C:/Users/DELL/Desktop/kavachsecurecom/android-app/hs_err_pid11928.log
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Gradle build daemon disappeared unexpectedly (it may have been killed or may have crashed)
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights from a Build Scan (powered by Develocity).
+> Get more help at https://help.gradle.org.

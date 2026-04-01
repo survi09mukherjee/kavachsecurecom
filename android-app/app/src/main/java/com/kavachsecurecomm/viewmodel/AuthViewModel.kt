@@ -34,11 +34,11 @@ class AuthViewModel(
             _authState.value = AuthState.Loading
             
             try {
-                // Step 1: Validate Token (mocked API call)
-                val isValid = authRepository.validateToken(inviteToken)
+                // Step 1: Validate Token (Check against MockDataset)
+                val mockUser = com.kavachsecurecomm.data.MockDataset.allUsers.find { it.serviceId == inviteToken }
                 
-                if (!isValid) {
-                    _authState.value = AuthState.Error("Invalid or expired token.")
+                if (mockUser == null) {
+                    _authState.value = AuthState.Error("Invalid or unauthorized Military Token.")
                     return@launch
                 }
 
@@ -46,23 +46,17 @@ class AuthViewModel(
                 val publicIdentityKey = keyManager.generateIdentityKeyPair()
                 val deviceId = keyManager.getOrCreateDeviceId()
                 
-                // In production, user would authenticate via Keycloak IAM here
-                // We use a placeholder keycloakId "kc_user_123" for demo
-                val keycloakId = "kc_user_123" 
+                // Use Mock User's details for demo persistence
+                val keycloakId = mockUser.serviceId 
 
-                // Step 3: Register Device and Key with the server
-                val registered = authRepository.registerDevice(
-                    token = inviteToken,
-                    publicIdentityKey = publicIdentityKey,
-                    deviceId = deviceId,
-                    keycloakId = keycloakId
-                )
+                // Step 3: Register Device and Key (Local mock success for now)
+                val registered = true // Success if token matched mock dataset
 
                 if (registered) {
                     _authState.value = AuthState.Success
                     onSuccess()
                 } else {
-                    _authState.value = AuthState.Error("Device registration failed.")
+                    _authState.value = AuthState.Error("Identity binding failed.")
                 }
 
             } catch (e: Exception) {

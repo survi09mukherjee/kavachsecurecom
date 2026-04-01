@@ -18,27 +18,41 @@ class WebSocketManager {
     // Listener for incoming decrypted messages
     var onMessageReceived: ((String) -> Unit)? = null
 
-    fun connect(serverUrl: String, jwtToken: String) {
+    fun connect(serverUrl: String, jwtToken: String, userId: String) {
+        // Append userId to URL for identification on the raw WebSocket backend
+        val fullUrl = if (serverUrl.contains("?")) "$serverUrl&userId=$userId" else "$serverUrl?userId=$userId"
+        
         val request = Request.Builder()
-            .url(serverUrl)
+            .url(fullUrl)
             // Send JWT Token in headers for initial handshake authentication
             .addHeader("Authorization", "Bearer $jwtToken")
             .build()
         
         webSocket = client.newWebSocket(request, object : WebSocketListener() {
             override fun onOpen(webSocket: WebSocket, response: okhttp3.Response) {
-                Log.d("WebSocket", "Connected securely to Kavach Node")
+                Log.d("WebSocket", "Connected securely to Kavach Node as $userId")
             }
 
-            override fun onMessage(text: String) {
-                // Here we receive the ENCRYPTED payload from the Server
-                // E.g., JSON { "senderId": "uuid", "cipherText": "...", "iv": "..." }
-                // The Decryption engine would intercept this.
-                Log.d("WebSocket", "Received encrypted message.")
-                onMessageReceived?.invoke(text)
+            override fun onMessage(webSocket: WebSocket, text: String) {
+                Log.d("WebSocket", "Received raw text: $text")
+                try {
+                    // Raw WebSockets receive a JSON string from our new backend
+                    // Expecting: { "type": "receive_message", "senderId": "...", "encryptedPayload": "..." }
+                    val json = org.json.JSONObject(text)
+                    val type = json.optString("type")
+                    
+                    if (type == "receive_message" || type == "emergency_alert") {
+                        val payload = json.optString("encryptedPayload")
+                        onMessageReceived?.invoke(payload)
+                    }
+                } catch (e: Exception) {
+                    Log.e("WebSocket", "Error parsing message: ${e.message}")
+                    // Fallback: search for a raw encrypted string if it's not valid JSON
+                    onMessageReceived?.invoke(text)
+                }
             }
 
-            override fun onMessage(bytes: ByteString) {
+            override fun onMessage(webSocket: WebSocket, bytes: ByteString) {
                 Log.d("WebSocket", "Received binary message.")
             }
 

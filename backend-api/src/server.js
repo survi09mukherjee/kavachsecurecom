@@ -1,15 +1,13 @@
 require('dotenv').config();
 const express = require('express');
 const http = require('http');
-const { Server } = require('socket.io');
+const { WebSocketServer } = require('ws');
 const cors = require('cors');
 const rateLimit = require('express-rate-limit');
 
 const app = express();
 const server = http.createServer(app);
-const io = new Server(server, {
-  cors: { origin: '*' }
-});
+const wss = new WebSocketServer({ server });
 
 // Configure Global Rate Limiter
 const apiLimiter = rateLimit({
@@ -37,7 +35,7 @@ app.get('/health', (req, res) => {
 const socketManager = require('./websockets/socketManager');
 
 // Setup WebSockets for Secure Messaging
-socketManager(io);
+socketManager(wss);
 
 const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => {
