@@ -51,3 +51,13 @@ You can verify the backend is running by navigating to `http://localhost:3000/he
 
 ### Important Note for Android Emulator Networking
 If you are running the Android app on an emulator, `localhost` refers to the Android device itself. To connect to the backend API running on your host machine via Docker, you should configure the Android app's WebSocket and API URLs to use `10.0.2.2:3000` instead of `localhost:3000`.
+
+---
+
+## 👥 Credits & Authors
+
+This project was designed and developed by:
+* **Subhajit Ghosh** - [LinkedIn Profile](https://www.linkedin.com/in/subhajit-ghosh-a17104348)
+* **Survi Mukherjee** - [LinkedIn Profile](https://www.linkedin.com/in/survi-mukherjee)
+---
+Feel free to reach out to the authors for any collaboration or feedback!
